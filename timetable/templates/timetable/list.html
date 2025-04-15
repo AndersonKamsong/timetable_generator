@@ -1,0 +1,36 @@
+{% extends 'timetable/base.html' %}
+
+{% block content %}
+<div class="bg-white shadow rounded-lg p-6">
+    <h2 class="text-2xl font-bold mb-4 text-gray-800">Generated Timetables</h2>
+
+    {% if timetables %}
+        <ul class="space-y-4">
+            {% for timetable in timetables %}
+                <li class="flex justify-between items-center bg-gray-50 hover:bg-gray-100 p-4 rounded-md transition">
+                    <div>
+                        <a href="{% url 'timetable_detail' timetable.pk %}" class="text-blue-600 font-semibold hover:underline">
+                            {{ timetable.name }}
+                        </a>
+                        <div class="text-sm text-gray-500">{{ timetable.created_at|date:"M d, Y H:i" }}</div>
+                    </div>
+                    <form action="{% url 'timetable_delete' timetable.pk %}" method="post" class="ml-4">
+                        {% csrf_token %}
+                        <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition text-sm">
+                            Delete
+                        </button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="text-gray-600">No timetables generated yet.</div>
+    {% endif %}
+
+    <div class="mt-6">
+        <a href="{% url 'generate_timetable' %}" class="inline-block bg-blue-600 text-white font-semibold px-4 py-2 rounded hover:bg-blue-700 transition">
+            Generate New Timetable
+        </a>
+    </div>
+</div>
+{% endblock %}
