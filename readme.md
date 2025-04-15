@@ -93,14 +93,18 @@ timetable_generator/
     │   └── commands/
     │       └── seed_data.py
     ├── migrations/
+    ├── optimization/
+    │   ├── constraints.py
+    │   └── solver.py
     ├── templates/
     │   └── timetable/
     │       ├── base.html
     │       ├── generate.html
+    │       ├── list.html
     │       └── result.html
-    ├── optimization/
-    │   ├── constraints.py
-    │   └── solver.py
+    ├── templatetags/
+    │   ├── timetable_tags.py
+    │   └── form_tags.py
     ├── models.py
     ├── views.py
     ├── urls.py
@@ -125,7 +129,7 @@ timetable_generator/
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ## 🤝 Contributing
 
